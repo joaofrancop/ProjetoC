@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h> 
 
 // Estrutura para armazenar os dados do cliente
 typedef struct {
@@ -18,6 +19,7 @@ void consultarCliente(Cliente *clientes, int quantidade);
 void desativarCliente(Cliente *clientes, int quantidade);
 void excluirCliente(Cliente **clientes, int *quantidade);
 void venderServico();
+void linha();
 
 // Função principal do menu
 void menuPrincipal() {
@@ -43,6 +45,8 @@ void menuPrincipal() {
             continue;
         }
 
+        linha();
+
         switch (opcao) {
             case 1: cadastrarCliente(&clientes, &quantidade); break;
             case 2: listarClientes(clientes, quantidade); break;
@@ -53,6 +57,9 @@ void menuPrincipal() {
             case 7: printf("Saindo...\n"); break;
             default: printf("Opcao invalida!\n"); break;
         }
+
+        sleep(2);
+        linha();
     } while (opcao != 7);
 
     // Libera a memória alocada dinamicamente
@@ -169,6 +176,10 @@ void excluirCliente(Cliente **clientes, int *quantidade) {
 // Função para simular a venda de um serviço
 void venderServico() {
     printf("Serviço vendido com sucesso!\n");
+}
+
+void linha() {
+    printf("---------------------------------\n");
 }
 
 // Função principal
